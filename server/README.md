@@ -26,6 +26,22 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Setup
+
+Create .env file and put the environment variables below
+
+```bash
+$ touch .env
+```
+
+```bash
+DATABASE_URL="file:./dev.db"
+
+JWT_SECRET = 'secretKey'
+JWT_EXPIRES_IN = '1h'
+```
+
+
 ## Installation
 
 ```bash
