@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int, Context } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
@@ -27,12 +27,12 @@ export class UsersResolver {
     return this.usersService.findById(id);
   }
 
-  @Query(() => User, { name: 'user' })
-  @UseGuards(JwtAuthGuard)
-  me(@Context() context) {
-    console.log('ME CONTEXT:', context);
-    // return this.usersService.findById(context.);
-  }
+  // @Query(() => User, { name: 'user' })
+  // @UseGuards(JwtAuthGuard)
+  // me(@Context() context) {
+  //   console.log('ME CONTEXT:', context);
+  //   // return this.usersService.findById(context.);
+  // }
 
   // @Mutation(() => User)
   // @UseGuards(JwtAuthGuard)

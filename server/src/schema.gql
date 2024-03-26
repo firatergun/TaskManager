@@ -35,7 +35,7 @@ type Mutation {
   login(loginInput: LoginInput!): LoginResponse!
   removeTask(id: Int!): Task!
   signup(signUpInput: SignUpInput!): User!
-  toggleCompleted(id: Float!): Task
+  toggleCompleted(id: Int!): Task
   updateTask(updateTaskInput: UpdateTaskInput!): Task!
 }
 
@@ -43,7 +43,7 @@ type Query {
   search(searchString: String): [Task!]!
   task(id: Int!): Task!
   tasks: [Task!]!
-  user: User!
+  user(id: Int!): User!
 }
 
 input SignUpInput {

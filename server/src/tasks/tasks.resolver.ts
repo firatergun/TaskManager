@@ -41,24 +41,31 @@ export class TasksResolver {
     @CurrentUser() user,
     @Args('createTaskInput') createTaskInput: CreateTaskInput,
   ) {
+    console.log('createTask....');
+    console.log(createTaskInput);
     return await this.tasksService.create(createTaskInput, user);
   }
 
   @Query(() => [Task], { name: 'tasks' })
   @UseGuards(JwtAuthGuard)
   async findAll(@CurrentUser() user: User) {
+    console.log('findAll....');
     return await this.tasksService.findAll(user);
   }
 
   @Mutation(() => Task, { nullable: true })
   @UseGuards(JwtAuthGuard)
-  async toggleCompleted(@Args('id') id: number): Promise<Task | null> {
+  async toggleCompleted(
+    @Args('id', { type: () => Int }) id: number,
+  ): Promise<Task | null> {
+    console.log('toggleCompleted....');
     return await this.tasksService.toggleCompleted(id);
   }
 
   @Query(() => Task, { name: 'task' })
   @UseGuards(JwtAuthGuard)
   async findOne(@Args('id', { type: () => Int }) id: number) {
+    console.log('findOne....');
     return await this.tasksService.findOne(id);
   }
 
@@ -68,6 +75,7 @@ export class TasksResolver {
     @Args('searchString', { nullable: true }) searchString: string,
     @CurrentUser() user: User,
   ) {
+    console.log('search....');
     return await this.tasksService.search(searchString, user);
   }
 
@@ -77,12 +85,14 @@ export class TasksResolver {
     @Args('updateTaskInput') updateTaskInput: UpdateTaskInput,
     @CurrentUser() user: User,
   ) {
+    console.log('updateTask....');
     return await this.tasksService.update(updateTaskInput, user);
   }
 
   @Mutation(() => Task)
   @UseGuards(JwtAuthGuard)
-  removeTask(@Args('id', { type: () => Int }) id: number) {
-    return this.tasksService.remove(id);
+  async removeTask(@Args('id', { type: () => Int }) id: number) {
+    console.log('removeTask....');
+    return await this.tasksService.remove(id);
   }
 }

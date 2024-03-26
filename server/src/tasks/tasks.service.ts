@@ -22,6 +22,9 @@ export class TasksService {
       where: {
         ownerId: user.id,
       },
+      orderBy: {
+        updatedAt: 'desc',
+      },
     });
   }
 
